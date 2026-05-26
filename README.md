@@ -22,6 +22,22 @@ npm run dev
 
 Open http://localhost:3000.
 
+### Run it in GitHub Codespaces (no local install)
+
+1. Click **`Code` → `Codespaces` → `Create codespace on claude/oregon-trail-trip-planner-lEyaN`** (or whichever branch you want).
+2. The devcontainer auto-runs `npm install`. When VS Code opens the workspace, the
+   "Start dev server" task fires automatically (defined in `.vscode/tasks.json`).
+3. A popup offers to open the forwarded port 3000 in the browser — click it.
+
+**Mapbox token, two options:**
+- Quick: in the Codespace terminal, paste
+  `echo "NEXT_PUBLIC_MAPBOX_PUBLIC_TOKEN=pk.…" > .env.local && echo "MAPBOX_SECRET_TOKEN=pk.…" >> .env.local`,
+  then re-run the task (Cmd/Ctrl+Shift+P → "Tasks: Restart Running Task").
+- Persistent across codespaces: add `NEXT_PUBLIC_MAPBOX_PUBLIC_TOKEN` and
+  `MAPBOX_SECRET_TOKEN` as **Codespaces Secrets** at
+  https://github.com/settings/codespaces, scoped to this repo. Next.js reads them
+  from `process.env` automatically.
+
 ## Environment variables
 
 | Variable                          | Required? | What it unlocks                                                       | Get one                                              |

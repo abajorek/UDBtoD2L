@@ -33,7 +33,9 @@ yarn-error.log*
 *.tsbuildinfo
 
 # editors
-.vscode/
+.vscode/*
+!.vscode/tasks.json
+!.vscode/extensions.json
 .idea/
 
 # dev caches
