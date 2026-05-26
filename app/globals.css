@@ -14,6 +14,7 @@ body {
   height: 100%;
   background-color: var(--parchment-bg);
   color: var(--parchment-ink);
+  font-size: 17px; /* slightly larger base size for accessibility */
 }
 
 body {

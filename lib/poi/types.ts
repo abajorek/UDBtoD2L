@@ -36,7 +36,10 @@ export type POICategory =
   | "tv_eats"
   | "kitsch"
   | "rest_area"
-  | "scenic";
+  | "scenic"
+  | "fuel";
+
+export type PriceTier = "cheap" | "average" | "premium";
 
 export type POISource =
   | "yelp"
@@ -58,20 +61,31 @@ export interface POI {
   rating?: number;
   photoUrl?: string;
   blurb?: string;
+  /** 1-5 toilet cleanliness rating, brand-derived. Only set for rest_area POIs. */
+  toiletRating?: number;
+  /** Likely fuel price tier vs. local average. Only set for fuel POIs. */
+  priceTier?: PriceTier;
+  /** Brand name extracted from the place name, when matched. */
+  brand?: string;
 }
 
 export interface ItineraryEntry {
   legId: Leg["id"];
   poiId: POI["id"];
+  poiName: string;
+  poiLat: number;
+  poiLng: number;
+  poiCategory: POICategory;
   addedAt: number;
   note?: string;
 }
 
 export const CATEGORY_META: Record<POICategory, { emoji: string; label: string; color: string }> = {
-  dog_walk: { emoji: "🐕", label: "Dog walk", color: "#5a7f3a" },
-  pet_friendly_stay: { emoji: "🏨", label: "Pet-friendly stay", color: "#7d4f1e" },
-  tv_eats: { emoji: "📺", label: "As-seen-on-TV eats", color: "#a06c2a" },
-  kitsch: { emoji: "🎡", label: "Kitsch / oddity", color: "#bf8e3f" },
-  rest_area: { emoji: "🛏️", label: "Rest area", color: "#7ea7c5" },
+  dog_walk: { emoji: "🐕", label: "Dogs", color: "#5a7f3a" },
+  pet_friendly_stay: { emoji: "🏨", label: "Pet stay", color: "#7d4f1e" },
+  tv_eats: { emoji: "📺", label: "TV eats", color: "#a06c2a" },
+  kitsch: { emoji: "🎡", label: "Wonders", color: "#bf8e3f" },
+  rest_area: { emoji: "🚻", label: "Rest", color: "#7ea7c5" },
   scenic: { emoji: "🌄", label: "Scenic", color: "#5a7f3a" },
+  fuel: { emoji: "⛽", label: "Gas", color: "#3b250d" },
 };

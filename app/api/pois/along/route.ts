@@ -17,6 +17,7 @@ const Body = z.object({
     "kitsch",
     "rest_area",
     "scenic",
+    "fuel",
   ]),
 });
 

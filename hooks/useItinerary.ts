@@ -31,7 +31,18 @@ export function useItinerary() {
   const add = useCallback((legId: string, poi: POI) => {
     setEntries((prev) => {
       if (prev.some((e) => e.legId === legId && e.poiId === poi.id)) return prev;
-      const next = [...prev, { legId, poiId: poi.id, addedAt: Date.now() }];
+      const next: ItineraryEntry[] = [
+        ...prev,
+        {
+          legId,
+          poiId: poi.id,
+          poiName: poi.name,
+          poiLat: poi.lat,
+          poiLng: poi.lng,
+          poiCategory: poi.category,
+          addedAt: Date.now(),
+        },
+      ];
       write(next);
       return next;
     });

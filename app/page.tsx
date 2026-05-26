@@ -12,10 +12,26 @@ import { MapView } from "@/components/Map/MapView";
 type LegPolylines = Record<string, { lat: number; lng: number }[]>;
 type LegPOIs = Record<string, POI[]>;
 
+function interpolatePolyline(
+  from: { lat: number; lng: number },
+  to: { lat: number; lng: number },
+  steps: number,
+): { lat: number; lng: number }[] {
+  const out: { lat: number; lng: number }[] = [];
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    out.push({
+      lat: from.lat + (to.lat - from.lat) * t,
+      lng: from.lng + (to.lng - from.lng) * t,
+    });
+  }
+  return out;
+}
+
 export default function Page() {
   const { assignment, swap } = useVehicleAssignment();
   const [activeCategories, setActiveCategories] = useState<Set<POICategory>>(
-    () => new Set<POICategory>(["dog_walk", "kitsch"]),
+    () => new Set<POICategory>(["kitsch"]),
   );
   const [legPolylines, setLegPolylines] = useState<LegPolylines>({});
   const [legPOIs, setLegPOIs] = useState<LegPOIs>({});
@@ -53,10 +69,11 @@ export default function Page() {
           } else {
             setLegPolylines((p) => ({
               ...p,
-              [legId]: [
+              [legId]: interpolatePolyline(
                 { lat: leg.from.lat, lng: leg.from.lng },
                 { lat: leg.to.lat, lng: leg.to.lng },
-              ],
+                40,
+              ),
             }));
           }
         } catch {
@@ -138,7 +155,6 @@ export default function Page() {
           onSwapAssignment={swap}
           legPolylines={legPolylines}
           activeCategories={activeCategories}
-          onToggleCategory={onToggleCategory}
           onHoverPOI={setHoverPOI}
         />
         <ItineraryList />

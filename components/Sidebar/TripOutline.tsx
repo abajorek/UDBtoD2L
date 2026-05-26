@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { TRIP } from "@/lib/trip/route";
 import { resolveRoutes } from "@/lib/trip/branching";
-import { CATEGORY_META } from "@/lib/poi/types";
 import type { FinalLegAssignment, Leg, POI, POICategory } from "@/lib/poi/types";
 import { LegPanel } from "./LegPanel";
 import { FlavorText } from "./FlavorText";
@@ -14,7 +13,6 @@ interface Props {
   onSwapAssignment: () => void;
   legPolylines: Record<string, { lat: number; lng: number }[]>;
   activeCategories: Set<POICategory>;
-  onToggleCategory: (c: POICategory) => void;
   onHoverPOI?: (poi: POI | null) => void;
 }
 
@@ -47,7 +45,9 @@ export function TripOutline({
           THE OREGON TRAIL <br />
           <span className="text-parchment-700">(but east of Kansas)</span>
         </h1>
-        <FlavorText seed="header" />
+        <div className="mt-2">
+          <FlavorText seed="header" />
+        </div>
       </header>
 
       <Card className="space-y-2">
@@ -122,17 +122,6 @@ export function TripOutline({
         })}
       </div>
 
-      <Card>
-        <h2 className="font-pixel text-[10px] uppercase text-parchment-800 mb-1">Legend</h2>
-        <div className="flex flex-wrap gap-2 text-xs">
-          {Object.entries(CATEGORY_META).map(([k, m]) => (
-            <span key={k} className="inline-flex items-center gap-1">
-              <span>{m.emoji}</span>
-              <span className="text-parchment-700">{m.label}</span>
-            </span>
-          ))}
-        </div>
-      </Card>
     </div>
   );
 }

@@ -1,0 +1,104 @@
+{
+  "_meta": {
+    "description": "Named travel centers & rest stops along the corridor, used to seed the toilet-o-meter when API keys aren't set. Cleanliness ratings derive from brand via lib/poi/quality.ts.",
+    "manual": true
+  },
+  "entries": [
+    {
+      "id": "rs-loves-limon",
+      "name": "Love's Travel Stop - Limon",
+      "city": "Limon, CO",
+      "lat": 39.2647,
+      "lng": -103.6925,
+      "blurb": "I-70 exit 359; large lot, showers, decent food court."
+    },
+    {
+      "id": "rs-pilot-goodland",
+      "name": "Pilot Travel Center - Goodland",
+      "city": "Goodland, KS",
+      "lat": 39.3491,
+      "lng": -101.6989,
+      "blurb": "I-70 exit 17; reliable bathrooms, Subway inside."
+    },
+    {
+      "id": "rs-loves-colby",
+      "name": "Love's Travel Stop - Colby",
+      "city": "Colby, KS",
+      "lat": 39.3905,
+      "lng": -101.0530,
+      "blurb": "I-70 exit 53; recently remodeled, Chester's Chicken."
+    },
+    {
+      "id": "rs-flyingj-salina",
+      "name": "Flying J Travel Center - Salina",
+      "city": "Salina, KS",
+      "lat": 38.8198,
+      "lng": -97.6111,
+      "blurb": "I-70 exit 252; Denny's attached, popular with truckers."
+    },
+    {
+      "id": "rs-qt-topeka",
+      "name": "QuikTrip - Topeka",
+      "city": "Topeka, KS",
+      "lat": 39.0356,
+      "lng": -95.6936,
+      "blurb": "Spotless bathrooms; the QT bar inside has surprisingly good coffee."
+    },
+    {
+      "id": "rs-caseys-kc",
+      "name": "Casey's General Store - KC",
+      "city": "Kansas City, MO",
+      "lat": 39.1212,
+      "lng": -94.5639,
+      "blurb": "Pizza is the secret weapon; bathrooms typically clean."
+    },
+    {
+      "id": "rs-pilot-bonner",
+      "name": "Pilot Travel Center - Bonner Springs",
+      "city": "Bonner Springs, KS",
+      "lat": 39.0639,
+      "lng": -94.8825,
+      "blurb": "I-70 exit 224; busy hub for the KC metro."
+    },
+    {
+      "id": "rs-pilot-effingham",
+      "name": "Pilot Travel Center - Effingham, IL",
+      "city": "Effingham, IL",
+      "lat": 39.1156,
+      "lng": -88.5436,
+      "blurb": "I-70/I-57 crossroads; major truck-stop hub."
+    },
+    {
+      "id": "rs-loves-richmond-in",
+      "name": "Love's Travel Stop - Richmond IN",
+      "city": "Richmond, IN",
+      "lat": 39.8478,
+      "lng": -84.8908,
+      "blurb": "I-70 exit 156; last big stop before Ohio."
+    },
+    {
+      "id": "rs-sheetz-breezewood",
+      "name": "Sheetz - Breezewood",
+      "city": "Breezewood, PA",
+      "lat": 39.9986,
+      "lng": -78.2436,
+      "blurb": "I-70/I-76 turnpike interchange; Sheetz MTO sandwiches."
+    },
+    {
+      "id": "rs-sheetz-pittsburgh-monroeville",
+      "name": "Sheetz - Monroeville",
+      "city": "Monroeville, PA",
+      "lat": 40.4422,
+      "lng": -79.7639,
+      "blurb": "Pittsburgh exurb; classic PA truck-stop comfort."
+    },
+    {
+      "id": "rs-qt-blue-springs",
+      "name": "QuikTrip - Blue Springs",
+      "city": "Blue Springs, MO",
+      "lat": 39.0167,
+      "lng": -94.2811,
+      "blurb": "I-70 exit 20; great QT brewed coffee."
+    }
+  ]
+}

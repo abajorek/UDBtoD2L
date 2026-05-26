@@ -1,6 +1,7 @@
 import "server-only";
 import type { LatLng } from "@/lib/poi/sample";
 import type { POI, POICategory } from "@/lib/poi/types";
+import { detectBrand, priceTierFor, toiletRatingFor } from "@/lib/poi/quality";
 
 const ENDPOINTS = [
   "https://overpass-api.de/api/interpreter",
@@ -53,6 +54,14 @@ const QUERIES: Partial<Record<POICategory, (around: string) => string>> = {
     );
     out center 30;
   `,
+  fuel: (around) => `
+    [out:json][timeout:25];
+    (
+      node["amenity"="fuel"](${around});
+      way["amenity"="fuel"](${around});
+    );
+    out center 50;
+  `,
 };
 
 export async function searchOverpass(
@@ -91,9 +100,13 @@ function toPOI(el: OverpassNode, category: POICategory): POI | null {
   const lat = el.lat ?? el.center?.lat;
   const lng = el.lon ?? el.center?.lon;
   if (lat === undefined || lng === undefined) return null;
-  const name = el.tags?.name;
+  // for fuel/rest stops, fall back to brand tag if name is missing
+  const name =
+    el.tags?.name ||
+    (category === "fuel" || category === "rest_area" ? el.tags?.brand || el.tags?.operator : undefined);
   if (!name) return null;
-  return {
+  const brand = detectBrand(name) || undefined;
+  const poi: POI = {
     id: `overpass:${el.type}/${el.id}`,
     name,
     category,
@@ -103,7 +116,17 @@ function toPOI(el: OverpassNode, category: POICategory): POI | null {
     source: "overpass",
     sourceUrl: `https://www.openstreetmap.org/${el.type}/${el.id}`,
     blurb: tagBlurb(el.tags),
+    brand,
   };
+  if (category === "rest_area" || category === "fuel") {
+    const t = toiletRatingFor(name);
+    if (t != null) poi.toiletRating = t;
+  }
+  if (category === "fuel") {
+    const p = priceTierFor(name);
+    if (p) poi.priceTier = p;
+  }
+  return poi;
 }
 
 function tagBlurb(tags: Record<string, string> | undefined): string | undefined {

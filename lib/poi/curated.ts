@@ -2,6 +2,9 @@ import type { POI, POICategory } from "@/lib/poi/types";
 import ddd from "@/data/curated/ddd_locations.json";
 import oddities from "@/data/curated/roadside_oddities.json";
 import waymarks from "@/data/curated/waymarks.json";
+import restStops from "@/data/curated/rest_stops.json";
+import fuel from "@/data/curated/fuel.json";
+import { priceTierFor, toiletRatingFor } from "@/lib/poi/quality";
 
 interface CuratedEntry {
   id: string;
@@ -52,10 +55,50 @@ function fromWaymarks(): POI[] {
   }));
 }
 
+function fromRestStops(): POI[] {
+  return (restStops.entries as CuratedEntry[]).map((e) => {
+    const t = toiletRatingFor(e.name);
+    return {
+      id: `curated:oddities:${e.id}`,
+      name: e.name,
+      category: "rest_area" as POICategory,
+      lat: e.lat,
+      lng: e.lng,
+      distanceFromRouteMi: 0,
+      source: "curated:oddities", // reuse curated source enum
+      blurb: `${e.city} · ${e.blurb ?? ""}`.trim(),
+      toiletRating: t,
+    };
+  });
+}
+
+function fromFuel(): POI[] {
+  return (fuel.entries as CuratedEntry[]).map((e) => {
+    const tier = priceTierFor(e.name);
+    return {
+      id: `curated:oddities:${e.id}`,
+      name: e.name,
+      category: "fuel" as POICategory,
+      lat: e.lat,
+      lng: e.lng,
+      distanceFromRouteMi: 0,
+      source: "curated:oddities",
+      blurb: `${e.city} · ${e.blurb ?? ""}`.trim(),
+      priceTier: tier,
+    };
+  });
+}
+
 let _all: POI[] | null = null;
 function allCurated(): POI[] {
   if (_all) return _all;
-  _all = [...fromDDD(), ...fromOddities(), ...fromWaymarks()];
+  _all = [
+    ...fromDDD(),
+    ...fromOddities(),
+    ...fromWaymarks(),
+    ...fromRestStops(),
+    ...fromFuel(),
+  ];
   return _all;
 }
 

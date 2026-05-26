@@ -20,8 +20,9 @@ const PROVIDERS_BY_CATEGORY: Record<
   pet_friendly_stay: [searchYelp, searchGoogle],
   tv_eats: [searchYelp],
   kitsch: [searchOverpass, searchGoogle],
-  rest_area: [searchOverpass],
+  rest_area: [searchOverpass, searchGoogle],
   scenic: [searchOverpass, searchGoogle],
+  fuel: [searchOverpass, searchGoogle],
 };
 
 export interface FetchOptions {
@@ -53,24 +54,50 @@ export async function fetchPOIsAlong({
   }
   const liveResults = (await Promise.all(calls)).flat();
 
-  // bring in curated entries inside the route bounding box
-  const bbox = polylineBBox(polyline, bufferMi);
-  const curated = curatedFor(category).filter(
-    (p) =>
-      p.lat >= bbox.minLat &&
-      p.lat <= bbox.maxLat &&
-      p.lng >= bbox.minLng &&
-      p.lng <= bbox.maxLng,
-  );
+  // Curated entries are pre-vetted to be near the corridor — keep them as long as
+  // they're inside a generous bounding box. Live results get the strict
+  // distance-from-route check.
+  const generousBbox = polylineBBox(polyline, Math.max(bufferMi * 3, 75));
+  const curated = curatedFor(category)
+    .filter(
+      (p) =>
+        p.lat >= generousBbox.minLat &&
+        p.lat <= generousBbox.maxLat &&
+        p.lng >= generousBbox.minLng &&
+        p.lng <= generousBbox.maxLng,
+    )
+    .map((p) => ({ ...p, distanceFromRouteMi: distanceToPolylineMi(p, polyline) }));
 
-  // attach distance-from-route, drop anything beyond the buffer, then dedupe
-  const merged = [...curated, ...liveResults].map((p) => ({
-    ...p,
-    distanceFromRouteMi: distanceToPolylineMi(p, polyline),
-  }));
-  const filtered = merged.filter((p) => p.distanceFromRouteMi <= bufferMi);
+  const liveWithDistance = liveResults
+    .map((p) => ({ ...p, distanceFromRouteMi: distanceToPolylineMi(p, polyline) }))
+    .filter((p) => p.distanceFromRouteMi <= bufferMi);
 
-  return dedupePOIs(filtered).sort((a, b) => a.distanceFromRouteMi - b.distanceFromRouteMi);
+  const filtered = [...curated, ...liveWithDistance];
+
+  const deduped = dedupePOIs(filtered);
+
+  if (category === "fuel") {
+    // sort by price tier first (cheap > avg > premium > unknown), then distance-from-route
+    const tierRank = { cheap: 0, average: 1, premium: 2 } as const;
+    return deduped.sort((a, b) => {
+      const at = a.priceTier ? tierRank[a.priceTier] : 3;
+      const bt = b.priceTier ? tierRank[b.priceTier] : 3;
+      if (at !== bt) return at - bt;
+      return a.distanceFromRouteMi - b.distanceFromRouteMi;
+    });
+  }
+
+  if (category === "rest_area") {
+    // toilet rating descending, then distance ascending
+    return deduped.sort((a, b) => {
+      const at = a.toiletRating ?? 0;
+      const bt = b.toiletRating ?? 0;
+      if (at !== bt) return bt - at;
+      return a.distanceFromRouteMi - b.distanceFromRouteMi;
+    });
+  }
+
+  return deduped.sort((a, b) => a.distanceFromRouteMi - b.distanceFromRouteMi);
 }
 
 function estimatedRouteMi(polyline: LatLng[]): number {

@@ -2,14 +2,17 @@
 import { useMemo } from "react";
 
 const SNIPPETS: string[] = [
-  "Your dog requires exercise. ① Walk at the next park ② Risk dysentery",
-  "You have driven 327 miles. The Tahoe has not died of dysentery.",
-  "The Odyssey has stopped to ford a corn field. Press F to honor.",
-  "You see a giant prairie dog. Investigate? (Y/N)",
-  "A traveling minstrel offers to play \"Free Bird\". Decline politely.",
-  "You have spotted: World's Largest Ball of Twine. Morale +1.",
-  "The Honda has caught dysentery. Just kidding, it's a 2019.",
-  "Your kids ask \"are we there yet?\". You are NOT there yet.",
+  "Now! Would you like to see the world's largest ball of twine?",
+  "I went on the internet... and I found this!",
+  "Some say... it's just down this exit.",
+  "How hard can it be? Quite, as it turns out.",
+  "Anyway. Moving on to a thing that is, frankly, magnificent.",
+  "And in the next two miles, you shall see the most exciting prairie dog ever made.",
+  "Hammond! Stop the car. There is a giant Czech egg.",
+  "It is, in many ways, the perfect roadside attraction.",
+  "On paper this sounds dreadful. In practice — it is wonderful.",
+  "Your dog requires exercise. The next park, I think, will do nicely.",
+  "Power... LATERAL!",
 ];
 
 export function FlavorText({ seed }: { seed?: string }) {

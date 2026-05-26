@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "description": "Curated gas stations along the corridor, used to seed price-tier badges when API keys aren't set. Price tier derives from brand via lib/poi/quality.ts.",
+    "manual": true
+  },
+  "entries": [
+    {
+      "id": "fl-costco-grand-jct",
+      "name": "Costco Gasoline - Grand Junction",
+      "city": "Grand Junction, CO",
+      "lat": 39.0815,
+      "lng": -108.5489,
+      "blurb": "Costco members only; reliably ~$0.30 below local average."
+    },
+    {
+      "id": "fl-samsclub-salina",
+      "name": "Sam's Club Fuel Center - Salina",
+      "city": "Salina, KS",
+      "lat": 38.8044,
+      "lng": -97.6228,
+      "blurb": "Members-only fuel; usually cheaper than highway stations."
+    },
+    {
+      "id": "fl-murphy-junction-city",
+      "name": "Murphy USA - Junction City",
+      "city": "Junction City, KS",
+      "lat": 38.9942,
+      "lng": -96.8506,
+      "blurb": "Walmart-adjacent, classic budget option."
+    },
+    {
+      "id": "fl-costco-overland-park",
+      "name": "Costco Gasoline - Overland Park",
+      "city": "Overland Park, KS",
+      "lat": 38.9011,
+      "lng": -94.6731,
+      "blurb": "On the south KC metro approach; members only."
+    },
+    {
+      "id": "fl-qt-kc-i70",
+      "name": "QuikTrip - I-70 KC",
+      "city": "Kansas City, MO",
+      "lat": 39.1158,
+      "lng": -94.5358,
+      "blurb": "QT cash price is competitive with members-warehouse fuel."
+    },
+    {
+      "id": "fl-murphy-columbia",
+      "name": "Murphy USA - Columbia, MO",
+      "city": "Columbia, MO",
+      "lat": 38.9531,
+      "lng": -92.3286,
+      "blurb": "Off I-70 exit 124; consistent low price."
+    },
+    {
+      "id": "fl-sheetz-pittsburgh",
+      "name": "Sheetz - Pittsburgh (Penn Hills)",
+      "city": "Penn Hills, PA",
+      "lat": 40.4669,
+      "lng": -79.8961,
+      "blurb": "PA Sheetz pricing is often the cheapest near Pittsburgh."
+    },
+    {
+      "id": "fl-wawa-pa",
+      "name": "Wawa - Cranberry Township",
+      "city": "Cranberry Township, PA",
+      "lat": 40.6856,
+      "lng": -80.1067,
+      "blurb": "Reliable PA Wawa; competitive price near Titusville approach."
+    }
+  ]
+}
