@@ -1,0 +1,129 @@
+{
+  "_meta": {
+    "description": "Restaurants featured on Diners, Drive-Ins and Dives (and similar food TV) within ~75 miles of the Grand Junction → Hutchinson → Kansas City → Pittsburgh → Titusville corridor.",
+    "manual": true,
+    "source": "ddd-fan-wikis + flavortown atlas, geocoded manually"
+  },
+  "entries": [
+    {
+      "id": "ddd-bin707",
+      "name": "Bin 707 Foodbar",
+      "city": "Grand Junction, CO",
+      "lat": 39.0639,
+      "lng": -108.5645,
+      "blurb": "Featured for elevated farm-to-table on Triple D Western Colorado tour."
+    },
+    {
+      "id": "ddd-suehiro",
+      "name": "Suehiro Japanese Restaurant",
+      "city": "Salina, KS",
+      "lat": 38.8403,
+      "lng": -97.6114,
+      "blurb": "DDD-featured sushi and tempura on the High Plains."
+    },
+    {
+      "id": "ddd-cozy-inn",
+      "name": "Cozy Inn",
+      "city": "Salina, KS",
+      "lat": 38.8417,
+      "lng": -97.6114,
+      "blurb": "Tiny 1922 slider stand featured on Triple D — six stools, onions everywhere."
+    },
+    {
+      "id": "ddd-grandys",
+      "name": "Grandy's Donuts",
+      "city": "Hutchinson, KS",
+      "lat": 38.0608,
+      "lng": -97.9215,
+      "blurb": "Old-school cake donuts; classic Plains diner stop."
+    },
+    {
+      "id": "ddd-arthur-bryants",
+      "name": "Arthur Bryant's Barbeque",
+      "city": "Kansas City, MO",
+      "lat": 39.0928,
+      "lng": -94.5577,
+      "blurb": "Legendary KC BBQ, featured on countless food shows."
+    },
+    {
+      "id": "ddd-zs-divine-eatery",
+      "name": "Z's Divine Eatery",
+      "city": "Kansas City, MO",
+      "lat": 39.0997,
+      "lng": -94.578,
+      "blurb": "DDD-featured comfort food in the city."
+    },
+    {
+      "id": "ddd-stroud-s",
+      "name": "Stroud's Oak Ridge Manor",
+      "city": "Kansas City, MO",
+      "lat": 39.2401,
+      "lng": -94.6314,
+      "blurb": "DDD-featured pan-fried chicken since the 1930s."
+    },
+    {
+      "id": "ddd-niecies",
+      "name": "Niecie's Restaurant",
+      "city": "Kansas City, MO",
+      "lat": 39.1042,
+      "lng": -94.5736,
+      "blurb": "DDD soul food spot in KC."
+    },
+    {
+      "id": "ddd-hamburg-inn",
+      "name": "Hamburg Inn No. 2",
+      "city": "Iowa City, IA",
+      "lat": 41.6647,
+      "lng": -91.5302,
+      "blurb": "Featured on DDD; coin caucus and pie shakes."
+    },
+    {
+      "id": "ddd-zombie-burger",
+      "name": "Zombie Burger + Drink Lab",
+      "city": "Des Moines, IA",
+      "lat": 41.5868,
+      "lng": -93.6244,
+      "blurb": "DDD-featured horror-themed burger joint."
+    },
+    {
+      "id": "ddd-superdawg",
+      "name": "Superdawg Drive-In",
+      "city": "Chicago, IL",
+      "lat": 42.0021,
+      "lng": -87.7857,
+      "blurb": "Vintage Chicago drive-in with mascot dogs on the roof."
+    },
+    {
+      "id": "ddd-pamelas",
+      "name": "Pamela's P&G Diner (Strip District)",
+      "city": "Pittsburgh, PA",
+      "lat": 40.4521,
+      "lng": -79.9817,
+      "blurb": "DDD-featured crepe hotcakes; Obama's favorite Pittsburgh diner."
+    },
+    {
+      "id": "ddd-primanti",
+      "name": "Primanti Bros. (Original)",
+      "city": "Pittsburgh, PA",
+      "lat": 40.4499,
+      "lng": -79.9842,
+      "blurb": "Strip District original — sandwiches with fries inside."
+    },
+    {
+      "id": "ddd-gauchos",
+      "name": "Gaucho Parrilla Argentina",
+      "city": "Pittsburgh, PA",
+      "lat": 40.4528,
+      "lng": -79.9836,
+      "blurb": "DDD-featured Argentine wood-fired meats."
+    },
+    {
+      "id": "ddd-blue-canoe",
+      "name": "Blue Canoe",
+      "city": "Titusville, PA",
+      "lat": 41.6256,
+      "lng": -79.6717,
+      "blurb": "Local Titusville favorite; comfort food, friendly to road-tripped families."
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "_meta": {
+    "description": "World's-largest, kitsch, and roadside oddities along the Grand Junction → Titusville corridor.",
+    "manual": true,
+    "source": "Roadside America + local knowledge, geocoded manually"
+  },
+  "entries": [
+    {
+      "id": "odd-dinosaur-jct",
+      "name": "Dinosaur Journey Museum",
+      "city": "Fruita, CO",
+      "lat": 39.156,
+      "lng": -108.7287,
+      "blurb": "Animatronic dinos; roar-worthy first stop out of Grand Junction."
+    },
+    {
+      "id": "odd-i70-eisenhower",
+      "name": "Eisenhower Tunnel Overlook",
+      "city": "Loveland Pass, CO",
+      "lat": 39.6783,
+      "lng": -105.9069,
+      "blurb": "Highest vehicular tunnel in the U.S. — kitschy bragging rights."
+    },
+    {
+      "id": "odd-genesee-buffalo",
+      "name": "Genesee Park Buffalo Herd",
+      "city": "Genesee, CO",
+      "lat": 39.7064,
+      "lng": -105.2806,
+      "blurb": "Free-roaming bison visible from I-70 — Denver's edge."
+    },
+    {
+      "id": "odd-worlds-largest-prairie-dog",
+      "name": "World's Largest Prairie Dog",
+      "city": "Oakley, KS",
+      "lat": 38.9908,
+      "lng": -100.8901,
+      "blurb": "8,000-pound concrete prairie dog at Prairie Dog Town."
+    },
+    {
+      "id": "odd-cawker-twine",
+      "name": "World's Largest Ball of Sisal Twine",
+      "city": "Cawker City, KS",
+      "lat": 39.5089,
+      "lng": -98.4337,
+      "blurb": "Frank Stoeber's ball — visitors are invited to add a wrap."
+    },
+    {
+      "id": "odd-czech-egg",
+      "name": "World's Largest Czech Egg",
+      "city": "Wilson, KS",
+      "lat": 38.8244,
+      "lng": -98.4753,
+      "blurb": "20-foot hand-painted kraslice egg honoring the Czech capital of Kansas."
+    },
+    {
+      "id": "odd-strataca",
+      "name": "Strataca - Kansas Underground Salt Museum",
+      "city": "Hutchinson, KS",
+      "lat": 38.0419,
+      "lng": -97.8736,
+      "blurb": "650 feet down into a working salt mine. Genuinely awesome."
+    },
+    {
+      "id": "odd-cosmosphere",
+      "name": "Cosmosphere",
+      "city": "Hutchinson, KS",
+      "lat": 38.0608,
+      "lng": -97.9298,
+      "blurb": "Smithsonian-affiliate space museum with real Apollo and Vostok hardware."
+    },
+    {
+      "id": "odd-big-brutus",
+      "name": "Big Brutus",
+      "city": "West Mineral, KS",
+      "lat": 37.275,
+      "lng": -94.9275,
+      "blurb": "16-story electric shovel — second-largest in the world."
+    },
+    {
+      "id": "odd-truckhenge",
+      "name": "Truckhenge",
+      "city": "Topeka, KS",
+      "lat": 39.1067,
+      "lng": -95.6056,
+      "blurb": "Half-buried trucks standing on end, by farmer-artist Ron Lessman."
+    },
+    {
+      "id": "odd-kc-fountains",
+      "name": "City of Fountains",
+      "city": "Kansas City, MO",
+      "lat": 39.0997,
+      "lng": -94.5786,
+      "blurb": "200+ fountains; the J.C. Nichols at the Plaza is the iconic one."
+    },
+    {
+      "id": "odd-world-largest-rocking-chair",
+      "name": "World's Largest Rocking Chair (Casey, IL)",
+      "city": "Casey, IL",
+      "lat": 39.2989,
+      "lng": -87.9939,
+      "blurb": "Casey, IL is a town of world's-largest things — chair, mailbox, wind chime, pitchfork."
+    },
+    {
+      "id": "odd-superman-statue",
+      "name": "Superman Statue",
+      "city": "Metropolis, IL",
+      "lat": 37.151,
+      "lng": -88.7295,
+      "blurb": "15-foot bronze Man of Steel in the official Hometown of Superman."
+    },
+    {
+      "id": "odd-house-on-the-rock",
+      "name": "House on the Rock",
+      "city": "Spring Green, WI",
+      "lat": 43.1019,
+      "lng": -90.1339,
+      "blurb": "Off-corridor detour but legendary kitsch — the Infinity Room and Carousel."
+    },
+    {
+      "id": "odd-cardiff-giant",
+      "name": "The Big Duck",
+      "city": "Cleveland, OH",
+      "lat": 41.4993,
+      "lng": -81.6944,
+      "blurb": "Roadside-Americana stop on the way east — check the Christmas Story House too."
+    },
+    {
+      "id": "odd-drake-well",
+      "name": "Drake Well Museum",
+      "city": "Titusville, PA",
+      "lat": 41.6128,
+      "lng": -79.6603,
+      "blurb": "Birthplace of the modern oil industry — required stop in Titusville."
+    },
+    {
+      "id": "odd-oil-creek-trail",
+      "name": "Oil Creek State Park",
+      "city": "Titusville, PA",
+      "lat": 41.5783,
+      "lng": -79.6589,
+      "blurb": "Bike/hike along the historic oil boom valley."
+    },
+    {
+      "id": "odd-randyland",
+      "name": "Randyland",
+      "city": "Pittsburgh, PA",
+      "lat": 40.4583,
+      "lng": -80.0167,
+      "blurb": "Hyper-colorful folk-art courtyard on the North Side."
+    },
+    {
+      "id": "odd-bicycle-heaven",
+      "name": "Bicycle Heaven Museum",
+      "city": "Pittsburgh, PA",
+      "lat": 40.4583,
+      "lng": -80.0214,
+      "blurb": "World's largest bike museum + shop, free to wander."
+    }
+  ]
+}

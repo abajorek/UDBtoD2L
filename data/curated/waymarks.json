@@ -1,0 +1,63 @@
+{
+  "_meta": {
+    "description": "Waymarking.com-style entries along the corridor. Waymarking has no public REST API, so this is a small manual import. Add more by browsing categories on waymarking.com.",
+    "manual": true,
+    "source": "waymarking.com (manual import)"
+  },
+  "entries": [
+    {
+      "id": "wm-co-monument",
+      "name": "Colorado National Monument Visitor Center",
+      "city": "Fruita, CO",
+      "lat": 39.1099,
+      "lng": -108.7359,
+      "category": "scenic",
+      "blurb": "Sandstone cliff overlooks; short walks suitable for dogs on leash."
+    },
+    {
+      "id": "wm-kansas-historical-marker",
+      "name": "Pony Express Marker — Kearney County",
+      "city": "Lakin, KS",
+      "lat": 37.9367,
+      "lng": -101.2522,
+      "category": "kitsch",
+      "blurb": "Historical marker waymark for the old Pony Express trail."
+    },
+    {
+      "id": "wm-tin-man",
+      "name": "Wamego Oz Museum",
+      "city": "Wamego, KS",
+      "lat": 39.2025,
+      "lng": -96.3052,
+      "category": "kitsch",
+      "blurb": "Yellow brick road photo op; surprisingly deep Oz collection."
+    },
+    {
+      "id": "wm-truman-library",
+      "name": "Harry S. Truman Presidential Library",
+      "city": "Independence, MO",
+      "lat": 39.0825,
+      "lng": -94.4189,
+      "category": "kitsch",
+      "blurb": "Presidential library waymark; Truman is buried here."
+    },
+    {
+      "id": "wm-arch",
+      "name": "Gateway Arch",
+      "city": "St. Louis, MO",
+      "lat": 38.6247,
+      "lng": -90.1848,
+      "category": "kitsch",
+      "blurb": "If detouring south; obvious but tram to the top is genuinely fun."
+    },
+    {
+      "id": "wm-flight-93",
+      "name": "Flight 93 National Memorial",
+      "city": "Stoystown, PA",
+      "lat": 40.0608,
+      "lng": -78.9069,
+      "category": "scenic",
+      "blurb": "Solemn memorial near the Pittsburgh approach."
+    }
+  ]
+}
