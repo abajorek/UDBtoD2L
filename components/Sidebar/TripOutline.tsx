@@ -4,9 +4,13 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { TRIP } from "@/lib/trip/route";
 import { resolveRoutes } from "@/lib/trip/branching";
-import type { FinalLegAssignment, Leg, POI, POICategory } from "@/lib/poi/types";
+import type { FinalLegAssignment, Leg, POI, POICategory, VehicleId } from "@/lib/poi/types";
+import { vehicleLore } from "@/lib/copy/generator";
+import { useCrew } from "@/hooks/useCrew";
+import { QuoteCallout } from "@/components/ui/QuoteCallout";
 import { LegPanel } from "./LegPanel";
 import { FlavorText } from "./FlavorText";
+import { CrewEditor } from "./CrewEditor";
 
 interface Props {
   assignment: FinalLegAssignment;
@@ -24,9 +28,10 @@ export function TripOutline({
   onHoverPOI,
 }: Props) {
   const [openLeg, setOpenLeg] = useState<string | null>("gj-hut");
+  const [showCrew, setShowCrew] = useState(false);
+  const { crew, setCrew } = useCrew();
   const routes = resolveRoutes(assignment);
 
-  // collect all legs that appear in either vehicle's route, preserving order
   const seen = new Set<string>();
   const orderedLegs: Leg[] = [];
   for (const r of routes) {
@@ -37,6 +42,12 @@ export function TripOutline({
       }
     }
   }
+
+  // for each leg, find which vehicle drives it (used to flavor the copy)
+  const vehicleForLeg = (legId: string): VehicleId | undefined => {
+    const r = routes.find((rt) => rt.legs.some((l) => l.id === legId));
+    return r?.vehicleId;
+  };
 
   return (
     <div className="space-y-3">
@@ -50,28 +61,64 @@ export function TripOutline({
         </div>
       </header>
 
-      <Card className="space-y-2">
-        <h2 className="font-pixel text-[10px] uppercase text-parchment-800">Your party</h2>
-        {TRIP.vehicles.map((v) => {
-          const route = routes.find((r) => r.vehicleId === v.id);
-          const finalLeg = route?.legs.find((l) => l.branchGroup === "final");
-          return (
-            <div key={v.id} className="flex items-center gap-2 text-sm">
-              <span
-                className="inline-block w-3 h-3 border border-parchment-800"
-                style={{ backgroundColor: v.color }}
-                aria-hidden
-              />
-              <span className="flex-1">{v.label}</span>
-              <span className="text-[10px] font-pixel text-parchment-700">
-                {finalLeg?.branchVariant === "via-pittsburgh"
-                  ? "via Pittsburgh"
-                  : "direct to Titusville"}
-              </span>
+      <Card className="space-y-3">
+        <div className="flex items-baseline justify-between">
+          <h2 className="font-pixel text-[10px] uppercase text-parchment-800">Your party</h2>
+          <button
+            onClick={() => setShowCrew((v) => !v)}
+            className="font-pixel text-[9px] uppercase text-parchment-700 hover:text-parchment-900 underline decoration-dotted underline-offset-2"
+          >
+            {showCrew ? "Done" : "Edit names"}
+          </button>
+        </div>
+
+        {showCrew ? (
+          <CrewEditor crew={crew} onChange={setCrew} />
+        ) : (
+          <div className="text-sm">
+            <div className="text-parchment-800">
+              <span className="font-semibold">{crew.driver}</span> at the wheel
+              {crew.passengers.length > 0 && (
+                <>
+                  {" · "}
+                  <span>with {crew.passengers.join(", ")}</span>
+                </>
+              )}
+              {" · "}
+              <span className="italic">🐕 {crew.dog}</span>
             </div>
-          );
-        })}
-        <Button variant="ghost" className="w-full mt-1" onClick={onSwapAssignment}>
+          </div>
+        )}
+
+        <div className="space-y-2">
+          {TRIP.vehicles.map((v) => {
+            const route = routes.find((r) => r.vehicleId === v.id);
+            const finalLeg = route?.legs.find((l) => l.branchGroup === "final");
+            return (
+              <div key={v.id} className="space-y-1">
+                <div className="flex items-center gap-2 text-sm">
+                  <span
+                    className="inline-block w-3 h-3 border border-parchment-800"
+                    style={{ backgroundColor: v.color }}
+                    aria-hidden
+                  />
+                  <span className="flex-1">{v.label}</span>
+                  <span className="text-[10px] font-pixel text-parchment-700">
+                    {finalLeg?.branchVariant === "via-pittsburgh"
+                      ? "via Pittsburgh"
+                      : "direct to Titusville"}
+                  </span>
+                </div>
+                <QuoteCallout
+                  text={vehicleLore(v.id, v.id)}
+                  label="📜 The saga"
+                />
+              </div>
+            );
+          })}
+        </div>
+
+        <Button variant="ghost" className="w-full" onClick={onSwapAssignment}>
           Swap final-leg routes
         </Button>
       </Card>
@@ -113,6 +160,7 @@ export function TripOutline({
                     leg={leg}
                     polyline={legPolylines[leg.id] || []}
                     activeCategories={activeCategories}
+                    activeVehicle={vehicleForLeg(leg.id)}
                     onHoverPOI={onHoverPOI}
                   />
                 </div>
@@ -121,7 +169,6 @@ export function TripOutline({
           );
         })}
       </div>
-
     </div>
   );
 }

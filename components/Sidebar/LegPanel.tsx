@@ -6,19 +6,26 @@ import { CATEGORY_META } from "@/lib/poi/types";
 import type { Leg, POI, POICategory } from "@/lib/poi/types";
 import { useLegPOIs } from "@/hooks/useLegPOIs";
 import { useItinerary } from "@/hooks/useItinerary";
+import { useCrew } from "@/hooks/useCrew";
 import { wazeUrlForPOI } from "@/lib/share/waze";
+import { quoteForPOI, wazeNudge } from "@/lib/copy/generator";
+import type { VehicleId } from "@/lib/poi/types";
+import { QuoteCallout } from "@/components/ui/QuoteCallout";
 import { FlavorText } from "./FlavorText";
 
 interface Props {
   leg: Leg;
   polyline: { lat: number; lng: number }[];
   activeCategories: Set<POICategory>;
+  /** Which vehicle's perspective drives the copy (for fuel + dog context). */
+  activeVehicle?: VehicleId;
   onHoverPOI?: (poi: POI | null) => void;
 }
 
-export function LegPanel({ leg, polyline, activeCategories, onHoverPOI }: Props) {
+export function LegPanel({ leg, polyline, activeCategories, activeVehicle, onHoverPOI }: Props) {
   const { fetchPOIs, isLoading } = useLegPOIs();
   const { add, remove, has } = useItinerary();
+  const { crew } = useCrew();
   const [poisByCategory, setPoisByCategory] = useState<Record<string, POI[]>>({});
 
   useEffect(() => {
@@ -68,6 +75,7 @@ export function LegPanel({ leg, polyline, activeCategories, onHoverPOI }: Props)
                     poi={poi}
                     legId={leg.id}
                     inItinerary={has(leg.id, poi.id)}
+                    quote={quoteForPOI({ poi, activeVehicle, crew })}
                     onAdd={() => add(leg.id, poi)}
                     onRemove={() => remove(leg.id, poi.id)}
                     onHover={onHoverPOI}
@@ -86,12 +94,14 @@ interface CardProps {
   poi: POI;
   legId: string;
   inItinerary: boolean;
+  quote: string;
   onAdd: () => void;
   onRemove: () => void;
   onHover?: (poi: POI | null) => void;
 }
 
-function POICard({ poi, inItinerary, onAdd, onRemove, onHover }: CardProps) {
+function POICard({ poi, inItinerary, quote, onAdd, onRemove, onHover }: CardProps) {
+  const wazeTip = wazeNudge(poi.id);
   return (
     <li>
       <Card
@@ -124,11 +134,13 @@ function POICard({ poi, inItinerary, onAdd, onRemove, onHover }: CardProps) {
               </div>
             </div>
           </div>
+          <QuoteCallout text={quote} />
           <div className="flex gap-2">
             <a
               href={wazeUrlForPOI(poi)}
               target="_blank"
               rel="noopener noreferrer"
+              title={wazeTip}
               className="flex-1 px-3 py-2 text-sm font-semibold text-center bg-[#33ccff] text-white border-2 border-parchment-800 shadow-woodcut hover:brightness-105 active:translate-x-[1px] active:translate-y-[1px]"
             >
               Open in Waze

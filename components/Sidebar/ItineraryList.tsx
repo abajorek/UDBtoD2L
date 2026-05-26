@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { useItinerary } from "@/hooks/useItinerary";
 import { TRIP } from "@/lib/trip/route";
 import { wazeUrl } from "@/lib/share/waze";
+import { wazeNudge } from "@/lib/copy/generator";
 import { CATEGORY_META } from "@/lib/poi/types";
 
 export function ItineraryList() {
@@ -64,7 +65,7 @@ export function ItineraryList() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[10px] font-pixel px-2 py-1 bg-[#33ccff] text-white border border-parchment-800 hover:brightness-105"
-                        title="Open in Waze"
+                        title={wazeNudge(e.poiId)}
                       >
                         WAZE
                       </a>
@@ -85,6 +86,7 @@ export function ItineraryList() {
                   href={wazeUrl({ lat: leg.to.lat, lng: leg.to.lng, name: leg.to.name })}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title={wazeNudge(legId)}
                   className="inline-block mt-2 px-3 py-1.5 text-xs font-semibold bg-[#33ccff] text-white border-2 border-parchment-800 shadow-woodcut hover:brightness-105"
                 >
                   Drive to {leg.to.name} in Waze →
